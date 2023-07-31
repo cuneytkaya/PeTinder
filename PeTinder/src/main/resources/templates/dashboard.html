@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .card {
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            text-align: center;
+        }
+        
+        .card.admin-card {
+            background-color: #ffbf80;
+        }
+        
+        .card:nth-child(2n) {
+            background-color: #ffcc99
+        }
+        
+        .card:nth-child(2n+1) {
+            background-color: #ffb366
+        }
+        
+        .card:hover {
+            background-color: #ff9999
+        }
+        
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        a{
+            text-decoration: none;
+        }
+    </style>
+    
+    <meta charset="UTF-8">
+    <title th:text="#{petter.customer.dashboard.title}"></title>
+</head>
+
+<body>
+    <h2>
+    <span th:text="${customerOverviewModel.fullName}"></span>
+    </h2>
+   
+    <div class="card-container">
+        <div class="admin-section" th:if="${customerOverviewModel.isAdmin}">
+            <h3 th:text="#{petter.customer.dashboard.administration}"></h3>
+            <div class="card admin-card">
+                <a href="/admin/customer/list" th:text="#{petter.customer.dashboard.customers}"></a>
+            </div>
+        </div>
+
+        <!-- Common Section -->
+        <div class="common-section">
+            <h3 th:text="#{petter.customer.dashboard.links}"></h3>
+            <div class="card" style="background-color:green">
+                <a style="color:white" href="/match" th:text="#{petter.customer.dashboard.startmatch}"></a>
+            </div>
+            <div class="card">
+                <a href="/pet/mypets" th:text="#{petter.customer.dashboard.mypets}"></a>
+            </div>
+            <div class="card">
+                <a href="/myhistory" th:text="#{petter.customer.dashboard.mymatchhistory}"></a>
+            </div>
+            <div class="card">
+                <a href="/my-information" th:text="#{petter.customer.dashboard.myinformations}"></a>
+            </div>
+            <div class="card">
+                <p>
+    <a href="/setLanguage/tr?language=tr" th:text="#{petter.customer.dashboard.turkish}" th:if="${customerOverviewModel.activeLanguageCode != 'tr'}"></a>
+    <a href="/setLanguage/en?language=en" th:text="#{petter.customer.dashboard.english}" th:if="${customerOverviewModel.activeLanguageCode != 'en'}"></a>
+</p>
+            </div>
+            <div class="card">
+                <a href="/logout" th:text="#{petter.customer.dashboard.logout}"></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

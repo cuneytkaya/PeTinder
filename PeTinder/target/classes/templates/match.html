@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title th:text="#{petter.match.title}"></title>
+    <style>
+        /* CSS for centered cards */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 th:text="#{petter.match.match}"> 
+    </h2>
+    <a class="back-button" href="/dashboard.html"><span th:text="#{petter.pet.create.goback}"></span></a>
+    <div class="card-container">
+        <p th:text="#{petter.match.selectapet}"></p>
+    </div>
+    <div class="card-container">
+        <div th:each="pet : ${pets}" class="card">
+            <h3>
+                <a th:href="@{/match/{petId}(petId=${pet.id})}" th:text="${pet.name}"></a>
+            </h3>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title th:text="#{petter.register.title}"></title>
+</head>
+
+<body>
+    <h2 th:text="#{petter.register.title}"></h2>
+    <p th:text="#{petter.register.fillform}"></p>
+    
+    <form action="/register" method="post" th:object="${registerModel}">
+        <table>
+            <tr>
+                <td th:text="#{petter.register.firstname}"></td>
+                <td><input type="text" th:field="*{firstName}"></td>
+                <td th:errors="*{firstName}" class="error"></td>
+            </tr>
+            <tr>
+                <td th:text="#{petter.register.lastname}"></td>
+                <td><input type="text" th:field="*{lastName}"></td>
+                <td th:errors="*{lastName}" class="error"></td>
+            </tr>
+            <tr>
+                <td th:text="#{petter.register.email}"></td>
+                <td><input type="email" th:field="*{email}"></td>
+                <td th:errors="*{email}" class="error"></td>
+            </tr>
+            <tr>
+                <td th:text="#{petter.register.phone}"></td>
+                <td><input type="text" th:field="*{phone}"></td>
+                <td th:errors="*{phone}" class="error"></td>
+            </tr>
+            <tr>
+                <td th:text="#{petter.register.additionalinformation}"></td>
+                <td><textarea th:field="*{additionalInformation}"></textarea></td>
+                <td th:errors="*{additionalInformation}" class="error"></td>
+            </tr>
+            <tr>
+                <td th:text="#{petter.register.password}"></td>
+                <td><input type="password" th:field="*{password}"></td>
+                <td th:errors="*{password}" class="error"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="submit" th:value="#{petter.register.registerbutton}"></td>
+            </tr>
+        </table>
+    </form>
+    <a href="/login.html"><p th:text="#{petter.register.alreadyaccount}"> </p></a>
+</body>
+
+</html>

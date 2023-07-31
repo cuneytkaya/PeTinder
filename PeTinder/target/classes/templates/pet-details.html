@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title th:text="#{petter.pet.petdetails.editpet}"></title>
+</head>
+
+<body>
+    <h2 th:text="#{petter.pet.petdetails.editpet}"><small></small></h2>
+    <a class="back-button" href="/pet/mypets"><span th:text="#{petter.pet.create.goback}"></span></a>
+    <p th:text="#{petter.pet.petdetails.editpetinfo}"></p>
+    
+    <div th:if="${pet != null}">
+        <form action="/save-pet-data" method="post" th:object="${pet}">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{customerId}">
+            <table>
+                <tr>
+                    <td th:text="#{petter.pet.petdetails.name}"></td>
+                    <td><input type="text" th:field="*{name}"></td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                </tr>
+                <tr>
+                    <td th:text="#{petter.pet.petdetails.pettype}"></td>
+                    <td>
+                        <select th:field="*{petTypeId}">
+                            <option value="10">DOG</option>
+                            <option value="20">CAT</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text="#{petter.pet.petdetails.dateofbirth}"></td>
+                    <td><input type="date" th:field="*{dateOfBirth}" th:value="${#temporals.format(pet.dateOfBirth, 'dd-MM-yyyy')}"></td>
+                    <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></td>
+                </tr>
+                <tr>
+                    <td th:text="#{petter.pet.petdetails.vaccinated}"></td>
+                    <td><input type="checkbox" th:field="*{vaccinated}"></td>
+                </tr>
+                <tr>
+                    <td th:text="#{petter.pet.petdetails.additionalinformation}"></td>
+                    <td><textarea th:field="*{additionalInformation}"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" th:value="#{petter.pet.create.save}"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    
+    <div th:if="${pet == null}">
+        <p class="small-italic" th:text="#{petter.pet.petdetails.petnotfound}"></p>
+    </div>
+</body>
+
+</html>

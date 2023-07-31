@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title th:text="#{Petter.Login.title}"></title>
+</head>
+
+<body>
+    <h2 th:text="#{Petter.Login.title}"></h2>
+    <p th:text="#{Petter.Login.credentials}"></p>
+    
+    <div th:if="${loginModel.hasError}" class="error" th:text="#{Petter.Login.wrongcredentials}"></div>
+    
+    <form action="/login" method="post" th:object="${loginModel}">
+        <table>
+            <tr>
+                <td th:text="#{Petter.Login.mail} + ':'"></td>
+                <td><input type="email" th:field="*{mail}"></td>
+                <td th:errors="*{mail}" class="error"></td>
+            </tr>
+            <tr>
+                <td th:text="#{Petter.Login.password} + ':'"></td>
+                <td><input type="password" th:field="*{password}"></td>
+                <td th:errors="*{password}" class="error"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="submit" th:value="#{Petter.Login.loginbutton}"></td>
+            </tr>
+        </table>
+    </form>
+    <a href="/register"><p th:text="#{Petter.Login.register}"></p></a>
+</body>
+
+</html>

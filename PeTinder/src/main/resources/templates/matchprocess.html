@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title th:text="#{petter.match.process.details.title}"></title>
+    <style>
+        /* CSS for centered card */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+        
+        .card {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .match-button {
+            background-color: green;
+            color: white;
+        }
+        
+        .decline-button {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 th:text="#{petter.match.process.details.matchtitle}">
+    </h2>
+    <a class="back-button" href="/dashboard.html"><span th:text="#{petter.pet.create.goback}"></span></a>
+    <div class="card-container">
+        <div class="card">
+            <h3 th:text="${pet.name}"></h3>
+            <p th:text="#{petter.match.process.details.pettype} + ${pet.getPetTypeName()}"></p>
+            <p th:text="#{petter.match.process.details.dateofbirth} + ${pet.dateOfBirth}"></p>
+            <p th:if="${pet.vaccinated}" th:text="#{petter.match.process.details.vaccinated}"></p>
+            <p th:unless="${pet.vaccinated}" th:text="#{petter.match.process.details.notvaccinated}"></p>
+            <p th:text="${pet.additionalInformation}"></p>
+            <div class="button-container">
+                <a class="button match-button" th:href="@{/approveMatch/{sourcePetId}/{petId}(petId=${pet.id}, sourcePetId=${pet.sourcePetId})}" th:text="#{petter.match.process.details.match}"></a>
+                <a class="button decline-button" th:href="@{/declinematch/{sourcePetId}/{petId}(petId=${pet.id}, sourcePetId=${pet.sourcePetId})}" th:text="#{petter.match.process.details.decline}"></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

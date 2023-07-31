@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title th:text="#{petter.customer.information.title}"></title>
+</head>
+
+<body>
+	<h2 th:text="#{petter.customer.information.customerinformation}">
+	</h2>
+	<a class="back-button" href="/dashboard.html"><span th:text="#{petter.pet.create.goback}"></span></a>
+	<p th:text="#{petter.customer.information.detailsofcustomer}"></p>
+	
+	<table>
+		<tr>
+			<th th:text="#{petter.customer.information.firstname}"></th>
+			<td th:text="${customerModel.firstName}"></td>
+		</tr>
+		<tr>
+			<th th:text="#{petter.customer.information.lastname}"></th>
+			<td th:text="${customerModel.lastName}"></td>
+		</tr>
+		<tr>
+			<th th:text="#{petter.customer.information.email}"></th>
+			<td th:text="${customerModel.email}"></td>
+		</tr>
+		<tr>
+			<th th:text="#{petter.customer.information.phone}"></th>
+			<td th:text="${customerModel.phone}"></td>
+		</tr>
+		<tr>
+			<th th:text="#{petter.customer.information.active}"></th>
+			<td th:text="${customerModel.active ? 'Yes' : 'No'}"></td>
+		</tr>
+		<tr>
+			<th th:text="#{petter.customer.information.createdon}"></th>
+			<td th:text="${customerModel.createdOnUtc}"></td>
+		</tr>
+		<tr>
+			<th th:text="#{petter.customer.information.lastlogindate}"></th>
+			<td th:text="${customerModel.lastLoginDateUtc}"></td>
+		</tr>
+		<tr>
+			<th th:text="#{petter.customer.information.additionalinformation}"></th>
+			<td th:text="${customerModel.additionalInformation}"></td>
+		</tr>
+	</table>
+</body>
+
+</html>

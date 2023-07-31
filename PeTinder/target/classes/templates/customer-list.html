@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title th:text="#{petter.customer.list.title}"></title>
+</head>
+
+<body>
+    <h2 th:text="#{petter.customer.list.customers}">
+    </h2>
+   <a class="back-button" href="/dashboard.html"><span th:text="#{petter.pet.create.goback}"></span></a>
+    <p th:text="#{petter.customer.list.registeredcustomer}"></p>
+    <div th:if="${customerOverviewList != null and not #lists.isEmpty(customerOverviewList)}">
+        <table class="box">
+            <tr>
+                <th th:text="#{petter.customer.list.fullname}"></th>
+                <th th:text="#{petter.customer.list.email}"></th>
+                <th th:text="#{petter.customer.list.phone}"></th>
+                <th th:text="#{petter.customer.list.petcount}"></th>
+            </tr>
+            <tr th:each="customerOverview : ${customerOverviewList}">
+                <td th:text="${customerOverview.fullName}"></td>
+                <td th:text="${customerOverview.email}"></td>
+                <td th:text="${customerOverview.phone}"></td>
+                <td style="text-align:center" th:text="${customerOverview.petCount}"></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div th:if="${customerOverviewList == null or #lists.isEmpty(customerOverviewList)}">
+        <p class="small-italic" th:text="#{petter.customer.list.nocustomer}"></p>
+    </div>
+</body>
+
+</html>

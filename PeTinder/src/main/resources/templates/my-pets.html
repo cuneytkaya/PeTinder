@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title th:text="#{petter.customer.pet.list.title}"></title>
+</head>
+
+<body>
+    <h2 th:text="#{petter.customer.pet.list.mypets}"></h2>
+    
+    <a class="back-button" href="/dashboard.html"><span th:text="#{petter.pet.create.goback}"></span></a>
+    
+    <p th:text="#{petter.customer.pet.list.listofmypets}"></p>
+    <a class="back-button" style="background-color:green" href="/pet/create"><span th:text="#{petter.pet.create}"></span></a>
+    <div th:if="${pets != null and not #lists.isEmpty(pets)}">
+        <table class="box">
+            <tr>
+                <th th:text="#{petter.customer.pet.list.name}"></th>
+                <th th:text="#{petter.customer.pet.list.pettype}"></th>
+                <th th:text="#{petter.customer.pet.list.dateofbirth}"></th>
+                <th th:text="#{petter.customer.pet.list.vaccinated}"></th>
+                <th th:text="#{petter.customer.pet.list.edit}"></th>
+                <th th:text="#{petter.customer.pet.list.delete}"></th>
+            </tr>
+            <tr th:each="pet : ${pets}">
+                <td th:text="${pet.name}"></td>
+                <td th:text="${pet.petTypeName}"></td>
+                <td th:text="${pet.dateOfBirth}"></td>
+                <td th:text="${pet.vaccinated} ? 'Yes' : 'No'"></td>
+                <td><a href="#" th:href="@{'/pet/edit/' + ${pet.id}}" th:text="#{petter.customer.pet.list.editlink}"></a></td>
+                <td><a href="#" th:href="@{'/pet/delete/' + ${pet.id}}" th:text="#{petter.customer.pet.list.deletelink}"></a></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div th:if="${pets == null or #lists.isEmpty(pets)}">
+        <p class="small-italic" th:text="#{petter.customer.pet.list.nopetsfound}"></p>
+    </div>
+</body>
+
+</html>

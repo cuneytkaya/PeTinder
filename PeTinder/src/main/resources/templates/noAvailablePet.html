@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title th:text="#{petter.customer.pet.list.nopet.title}"></title>
+    <style>
+        /* CSS for centered cards */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 th:text="#{petter.customer.pet.list.nopet.match}"></h2>
+    <a class="back-button" href="/dashboard.html"><span th:text="#{petter.pet.create.goback}"></span></a>
+    <div class="card-container">
+        <p th:text="#{petter.customer.pet.list.nopet.selectapet}"></p>
+    </div>
+    <div class="card-container">
+        <p th:text="#{petter.customer.pet.list.nopet.nopetfound}"></p>
+    </div>
+</body>
+
+</html>

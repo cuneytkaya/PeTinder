@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title th:text="#{petter.match.history.details.title}"></title>
+</head>
+
+<body>
+    <h2 th:text="#{petter.match.history.details.matchhistorydetails}">
+    </h2>
+    
+     <a class="back-button" href="/myhistory"><span th:text="#{petter.pet.create.goback}"></span></a>
+    
+    <div th:if="${history != null}">
+        <h3 th:text="#{petter.match.history.details.mypet}"></h3>
+        <table>
+            <tr>
+                <td th:text="#{petter.match.history.details.name}"></td>
+                <td th:text="${history.sourcePetName}"></td>
+            </tr>
+        </table>
+        
+        <h3 th:text="#{petter.match.history.details.targetpet}"></h3>
+        <table>
+            <tr>
+                <td th:text="#{petter.match.history.details.name}"></td>
+                <td th:text="${history.targetPetName}"></td>
+            </tr>
+            <tr>
+                <td th:text="#{petter.match.history.details.dateofbirth}"></td>
+                <td th:text="${history.targetDateOfBirth}"></td>
+            </tr>
+            <tr>
+                <td th:text="#{petter.match.history.details.additionalinformation}"></td>
+                <td th:text="${history.targetAdditionalInformation}"></td>
+            </tr>
+        </table>
+        
+        <h3 th:text="#{petter.match.history.details.owner}"></h3>
+        <table>
+            <tr>
+                <td th:text="#{petter.match.history.details.name}"></td>
+                <td th:text="${history.targetCustomerName}"></td>
+            </tr>
+            <tr>
+                <td th:text="#{petter.match.history.details.email}"></td>
+                <td th:text="${history.targetCustomerEmail}"></td>
+            </tr>
+            <tr>
+                <td th:text="#{petter.match.history.details.phone}"></td>
+                <td th:text="${history.targetCustomerPhone}"></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div th:if="${history == null}">
+        <p class="small-italic" th:text="#{petter.match.history.details.nomatchhistorydetails}"></p>
+    </div>
+</body>
+
+</html>
